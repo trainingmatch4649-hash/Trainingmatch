@@ -4,9 +4,10 @@ import { EventCard } from './EventCard';
 
 interface ScheduledEventsProps {
   onBack: () => void;
+  onEventClick: (eventId: number) => void;
 }
 
-export function ScheduledEvents({ onBack }: ScheduledEventsProps) {
+export function ScheduledEvents({ onBack, onEventClick }: ScheduledEventsProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({
     level: 'すべて',
@@ -179,9 +180,9 @@ export function ScheduledEvents({ onBack }: ScheduledEventsProps) {
           <span className="text-gray-600">{allEvents.length}件の大会</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {allEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard key={event.id} event={event} onEventClick={onEventClick} />
           ))}
         </div>
       </div>

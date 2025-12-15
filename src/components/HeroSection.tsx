@@ -54,18 +54,18 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <button
               key={index}
               onClick={feature.action}
-              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 text-center shadow-xl hover:shadow-2xl transform hover:-translate-y-2"
+              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 text-center shadow-xl hover:shadow-2xl transform hover:-translate-y-2"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <feature.icon className="w-6 h-6 text-white" />
               </div>
-              <div className="mb-2 text-lg">{feature.title}</div>
-              <div className="text-sm text-slate-400">{feature.subtitle}</div>
+              <div className="mb-1 text-base">{feature.title}</div>
+              <div className="text-xs text-slate-400">{feature.subtitle}</div>
             </button>
           ))}
         </div>

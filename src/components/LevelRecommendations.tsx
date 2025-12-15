@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { Sparkles, Award } from 'lucide-react';
 import { EventCard } from './EventCard';
 
-export function LevelRecommendations() {
+interface LevelRecommendationsProps {
+  onEventClick: (event: any) => void;
+}
+
+export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps) {
   const [activeTab, setActiveTab] = useState<'beginner' | 'experienced'>('beginner');
 
   const beginnerEvents = [
@@ -101,9 +105,9 @@ export function LevelRecommendations() {
         )}
 
         {/* イベントカード */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {events.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard key={event.id} event={event} onEventClick={onEventClick} />
           ))}
         </div>
       </div>

@@ -4,6 +4,7 @@ import { EventCard } from './EventCard';
 
 interface EventDiagnosisProps {
   onBack: () => void;
+  onEventClick: (event: any) => void;
 }
 
 type DiagnosisResult = {
@@ -16,7 +17,7 @@ type DiagnosisResult = {
   recommendations: string[];
 };
 
-export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
+export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -34,7 +35,7 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
     },
     {
       id: 2,
-      question: '参加したい種目を選んでください',
+      question: 'どのカテゴリーに興味がありますか？',
       options: [
         'メンズフィジーク',
         'ビキニ',
@@ -46,19 +47,7 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
     },
     {
       id: 3,
-      question: '参加望の地域を選んでください',
-      options: [
-        '関東',
-        '関西',
-        '中部',
-        '九州',
-        '北海道・東北',
-        'どこでも良い'
-      ]
-    },
-    {
-      id: 4,
-      question: '大会で重視したいことは何ですか？',
+      question: '大会に参する目標は何ですか？',
       options: [
         '楽しむこと・完走すること',
         '自己ベストを目指す',
@@ -67,23 +56,13 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
       ]
     },
     {
-      id: 5,
-      question: '一週間のトレーニング頻度は？',
+      id: 4,
+      question: '大会準備にどのくらい時間をかけられますか？',
       options: [
-        '週1〜2回',
-        '週3〜4回',
-        '週5〜6回',
-        '毎日トレーニング'
-      ]
-    },
-    {
-      id: 6,
-      question: '大会参加の予算はどのくらいですか？',
-      options: [
-        '〜1万円',
-        '1〜3万円',
-        '3〜5万円',
-        '5万円以上も可能'
+        '1ヶ月程度',
+        '2〜3ヶ月',
+        '4〜6ヶ月',
+        '半年以上じっくり準備したい'
       ]
     }
   ];
@@ -92,9 +71,8 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
   const analyzeDiagnosis = (): DiagnosisResult => {
     const experience = answers[0];
     const category = answers[1];
-    const goal = answers[3];
-    const trainingFreq = answers[4];
-    const budget = answers[5];
+    const goal = answers[2];
+    const preparationTime = answers[3];
 
     // 経験レベルのスコア
     let experienceScore = 0;
@@ -103,15 +81,8 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
     else if (experience === '1年以上') experienceScore = 3;
     else experienceScore = 4;
 
-    // トレーニング頻度のスコア
-    let trainingScore = 0;
-    if (trainingFreq === '週1〜2回') trainingScore = 1;
-    else if (trainingFreq === '週3〜4回') trainingScore = 2;
-    else if (trainingFreq === '週5〜6回') trainingScore = 3;
-    else trainingScore = 4;
-
     // 総合スコアで診断タイプを決定
-    const totalScore = experienceScore + trainingScore;
+    const totalScore = experienceScore;
 
     // 目標と経験に基づいた詳細な診断
     if (experienceScore <= 2 && goal === '楽しむこと・完走すること') {
@@ -152,7 +123,7 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
           '経験者のアドバイスを積極的に求める'
         ]
       };
-    } else if (experienceScore >= 3 && trainingScore >= 3 && goal === '上位入賞を狙う') {
+    } else if (experienceScore >= 3 && goal === '上位入賞を狙う') {
       return {
         type: 'advanced-competitive',
         title: 'アスリートタイプ',
@@ -190,25 +161,6 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
           '大会後の懇親会がある大会を選択'
         ]
       };
-    } else if (experienceScore >= 3 && trainingScore >= 2) {
-      return {
-        type: 'intermediate',
-        title: 'ステディタイプ',
-        description: '着実に実力をつけている経験者です！',
-        icon: TrendingUp,
-        color: 'from-green-50 to-emerald-50',
-        strengths: [
-          '安定したトレーニング習慣',
-          'バランスの取れた目標設定',
-          '継続的な成長'
-        ],
-        recommendations: [
-          '中級〜上級者向けの大会',
-          '自分のペースで挑戦できる大会',
-          '3〜4ヶ月前からの準備',
-          '技術向上を重視した練習'
-        ]
-      };
     } else {
       return {
         type: 'balanced',
@@ -233,43 +185,54 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
 
   const getRecommendedEvents = () => {
     const diagnosis = analyzeDiagnosis();
+    const experience = answers[0];
     const category = answers[1];
-    const region = answers[2];
+    const goal = answers[2];
+    const prepTime = answers[3];
     
-    // 診断タイプに基づいて異なる大会を推奨
+    // 経験レベルの判定
+    const isBeginnerLevel = experience === '3ヶ月未満・初心者' || experience === '3ヶ月〜1年程度';
+    
+    // 全ての大会データ
     const allEvents = [
       {
         id: 1,
         name: 'LEMON CLASSIC',
         year: '2025 FUKUOKA',
-        category: category || 'ビキニ',
+        category: 'ビキニ',
         date: '2025年7月20日',
+        monthsFromNow: 7,
         location: '福岡県福岡市・パピヨン24ガスホール',
         price: '参加費: 6,000円',
         badge: '初心者向け',
+        level: 'beginner',
         types: ['beginner-fun', 'beginner-growth', 'balanced', 'community']
       },
       {
         id: 2,
         name: 'LEMON CLASSIC 2025 TOKYO',
         year: '',
-        category: category || 'メンズフィジーク',
+        category: 'メンズフィジーク',
         date: '2025年9月6日',
+        monthsFromNow: 9,
         location: '東京都江東区・TFTホール',
         price: '参加費: 6,000円',
         badge: '初心者向け',
+        level: 'beginner',
         types: ['beginner-fun', 'beginner-growth', 'community']
       },
       {
         id: 3,
         name: 'LEMON CLASSIC 2025 OSAKA',
         year: '',
-        category: category || 'ベストボディ',
+        category: 'ベストボディ',
         date: '2025年7月5日',
+        monthsFromNow: 7,
         location: '大阪府大阪市・大阪国際交流センター',
         price: '参加費: 6,000円',
         badge: '経験者向け',
-        types: ['intermediate', 'advanced-competitive']
+        level: 'experienced',
+        types: ['advanced-competitive']
       },
       {
         id: 4,
@@ -277,10 +240,12 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
         year: '',
         category: 'クラシックフィジーク',
         date: '2025年8月16日',
+        monthsFromNow: 8,
         location: '愛知県名古屋市・名古屋市公会堂',
         price: '参加費: 6,000円',
-        badge: '経験者向け',
-        types: ['intermediate', 'advanced-competitive', 'balanced']
+        badge: '中級者向け',
+        level: 'intermediate',
+        types: ['advanced-competitive', 'balanced']
       },
       {
         id: 5,
@@ -288,9 +253,11 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
         year: '2025 OKINAWA',
         category: 'ベストボディ',
         date: '2025年8月30日',
+        monthsFromNow: 8,
         location: '沖縄県沖縄市・てだこホール',
         price: '参加費: 6,000円',
         badge: '経験者向け',
+        level: 'experienced',
         types: ['advanced-competitive']
       },
       {
@@ -299,16 +266,100 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
         year: '2025 HIROSHIMA',
         category: 'ウィメンズフィジーク',
         date: '2025年9月15日',
+        monthsFromNow: 9,
         location: '広島県広島市・フェニックスホール',
         price: '参加費: 6,000円',
         badge: '初心者向け',
+        level: 'beginner',
         types: ['beginner-fun', 'community', 'balanced']
+      },
+      {
+        id: 7,
+        name: 'LEMON CLASSIC 2025 SAPPORO',
+        year: '',
+        category: 'メンズフィジーク',
+        date: '2025年10月12日',
+        monthsFromNow: 10,
+        location: '北海道札幌市・札幌コンベンションセンター',
+        price: '参加費: 6,000円',
+        badge: '初心者向け',
+        level: 'beginner',
+        types: ['beginner-fun', 'beginner-growth', 'community']
+      },
+      {
+        id: 8,
+        name: 'LEMON CLASSIC SENDAI',
+        year: '2025',
+        category: 'ビキニ',
+        date: '2025年8月9日',
+        monthsFromNow: 8,
+        location: '宮城県仙台市・仙台サンプラザ',
+        price: '参加費: 6,000円',
+        badge: '初心者向け',
+        level: 'beginner',
+        types: ['beginner-fun', 'beginner-growth', 'balanced']
+      },
+      {
+        id: 9,
+        name: 'LEMON CLASSIC KYOTO',
+        year: '2025',
+        category: 'ボディビル',
+        date: '2025年7月27日',
+        monthsFromNow: 7,
+        location: '京都府京都市・京都会館',
+        price: '参加費: 6,000円',
+        badge: '経験者向け',
+        level: 'experienced',
+        types: ['advanced-competitive']
       }
     ];
 
-    // 診断タイプに合った大会をフィルタリング
-    return allEvents
-      .filter(event => event.types.includes(diagnosis.type))
+    // 準備期間に基づいた開催時期の計算
+    let idealMonthsFromNow = 3; // デフォルト
+    if (prepTime === '1ヶ月程度') idealMonthsFromNow = 1.5;
+    else if (prepTime === '2〜3ヶ月') idealMonthsFromNow = 3;
+    else if (prepTime === '4〜6ヶ月') idealMonthsFromNow = 5;
+    else if (prepTime === '半年以上じっくり準備したい') idealMonthsFromNow = 8;
+
+    // スコアリングシステムで大会をランク付け
+    const scoredEvents = allEvents.map(event => {
+      let score = 0;
+      
+      // 1. カテゴリーが一致するか（最重要）
+      if (event.category === category) {
+        score += 50;
+      }
+      
+      // 2. 経験レベルが合っているか
+      if (isBeginnerLevel && event.level === 'beginner') {
+        score += 30;
+      } else if (!isBeginnerLevel && event.level === 'experienced') {
+        score += 30;
+      } else if (event.level === 'intermediate') {
+        score += 20; // 中級者向けはどちらにも適度にマッチ
+      }
+      
+      // 3. 診断タイプに合っているか
+      if (event.types.includes(diagnosis.type)) {
+        score += 20;
+      }
+      
+      // 4. 準備期間が適切か（開催時期が準備期間とマッチ）
+      const timeDifference = Math.abs(event.monthsFromNow - idealMonthsFromNow);
+      if (timeDifference <= 1) {
+        score += 15;
+      } else if (timeDifference <= 2) {
+        score += 10;
+      } else if (timeDifference <= 3) {
+        score += 5;
+      }
+      
+      return { ...event, score };
+    });
+
+    // スコアの高い順にソートして上位3件を返す
+    return scoredEvents
+      .sort((a, b) => b.score - a.score)
       .slice(0, 3);
   };
 
@@ -347,107 +398,75 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
             戻る
           </button>
 
-          {/* 診断結果カード */}
-          <div className="bg-white rounded-2xl p-8 mb-8 shadow-xl">
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                <Sparkles className="w-7 h-7 text-white" />
-              </div>
-              <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-                診断結果
-              </h2>
-            </div>
-
-            {/* メインの診断結果 */}
-            <div className={`bg-gradient-to-br ${diagnosis.color} rounded-2xl p-8 mb-8 text-center shadow-lg border border-white/50`}>
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <DiagnosisIcon className="w-10 h-10 text-gray-800" />
-              </div>
-              <h3 className="mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                {diagnosis.title}
-              </h3>
-              <p className="text-gray-700 text-lg mb-2">
-                {diagnosis.description}
-              </p>
-            </div>
-
-            {/* あなたの強み */}
-            <div className="mb-8">
-              <h3 className="mb-6 text-center">あなたの強み</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {diagnosis.strengths.map((strength, index) => (
-                  <div key={index} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 text-center border border-blue-100 shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-md">
-                      {index + 1}
-                    </div>
-                    <p className="text-sm leading-relaxed">{strength}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* おすすめのアプローチ */}
-            <div className="mb-8 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 border border-gray-200">
-              <h3 className="mb-6 text-center">あなたへのおすすめ</h3>
-              <ul className="space-y-4">
-                {diagnosis.recommendations.map((rec, index) => (
-                  <li key={index} className="flex gap-4 items-start group">
-                    <span className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center text-sm shadow-md group-hover:scale-110 transition-transform duration-300">
-                      ✓
-                    </span>
-                    <span className="text-gray-700 pt-1">{rec}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* 回答サマリー */}
-            <details className="mb-6 group">
-              <summary className="cursor-pointer text-gray-600 hover:text-gray-800 mb-2 list-none flex items-center justify-center gap-2 py-3 px-6 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors duration-300">
-                <span>あなたの回答を確認する</span>
-                <svg className="w-5 h-5 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </summary>
-              <div className="space-y-3 mt-6">
-                {answers.map((answer, index) => (
-                  <div key={index} className="flex items-start gap-3 text-sm bg-gradient-to-r from-gray-50 to-blue-50 p-4 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors duration-300">
-                    <span className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center shadow-sm">
-                      {index + 1}
-                    </span>
-                    <div className="flex-1">
-                      <div className="text-gray-600 mb-1">{questions[index].question}</div>
-                      <div>{answer}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </details>
-
-            <div className="flex gap-4 justify-center">
-              <button
-                onClick={handleReset}
-                className="px-8 py-4 text-gray-700 border-2 border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-sm hover:shadow-md"
-              >
-                もう一度診断する
-              </button>
-            </div>
-          </div>
-
           {/* おすすめ大会 */}
           <div className="mb-6">
-            <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              あなたにおすすめの大会（{recommendedEvents.length}件）
-            </h2>
-            <p className="text-gray-600 mt-2">
-              診断結果「{diagnosis.title}」に最適な大会を厳選しました
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent text-xl">
+                あなたにおすすめの大会
+              </h2>
+            </div>
+            <p className="text-gray-600 text-center mb-6 text-sm">
+              {answers[1]}・{answers[0]}・準備期間{answers[3]}の条件で最適な大会を選びました
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recommendedEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+          {/* マッチング理由カード */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-5 mb-6 border border-blue-200">
+            <h3 className="mb-3 text-center text-base">これらの大会がおすすめな理由</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="bg-white rounded-lg p-3 text-center shadow-sm">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div className="text-xs text-gray-600 mb-1">希望カテゴリー</div>
+                <div className="text-sm">{answers[1]}</div>
+              </div>
+              <div className="bg-white rounded-lg p-3 text-center shadow-sm">
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div className="text-xs text-gray-600 mb-1">あなたのレベル</div>
+                <div className="text-xs">{answers[0]}</div>
+              </div>
+              <div className="bg-white rounded-lg p-3 text-center shadow-sm">
+                <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="text-xs text-gray-600 mb-1">準備期間</div>
+                <div className="text-xs">{answers[3]}</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            {recommendedEvents.map((event, index) => (
+              <div key={event.id} className="relative">
+                {index === 0 && (
+                  <div className="absolute -top-3 -right-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs shadow-lg">
+                    最もおすすめ
+                  </div>
+                )}
+                <EventCard event={event} onEventClick={onEventClick} />
+              </div>
             ))}
+          </div>
+
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={handleReset}
+              className="px-6 py-3 text-sm text-gray-700 border-2 border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 shadow-sm hover:shadow-md"
+            >
+              もう一度診断する
+            </button>
           </div>
         </div>
       </div>
@@ -459,56 +478,56 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
       <div className="max-w-2xl mx-auto px-6 py-8">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-8 transition-colors"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-8 transition-colors text-sm"
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="w-4 h-4" />
           戻る
         </button>
 
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+        <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent text-lg">
               あなたに合う大会診断
             </h2>
           </div>
 
-          <p className="text-center text-gray-600 mb-8">
-            6つの質問に答えて、最適な大会を見つけましょう
+          <p className="text-center text-gray-600 mb-6 text-sm">
+            4つの質問に答えて、最適な大会を見つけましょう
           </p>
 
           {/* プログレスバー */}
-          <div className="mb-8">
-            <div className="flex justify-between text-sm text-gray-600 mb-2">
+          <div className="mb-6">
+            <div className="flex justify-between text-xs text-gray-600 mb-2">
               <span>質問 {currentQuestion + 1}/{questions.length}</span>
               <span>{Math.round(progress)}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-500 ease-out shadow-lg"
+                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500 ease-out shadow-lg"
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
 
           {/* 質問 */}
-          <div className="mb-8">
-            <h3 className="mb-6 text-center">{questions[currentQuestion].question}</h3>
+          <div className="mb-6">
+            <h3 className="mb-5 text-center text-base">{questions[currentQuestion].question}</h3>
             <div className="space-y-3">
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => handleAnswer(option)}
-                  className="group w-full text-left p-5 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                  className="group w-full text-left p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:shadow-lg transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gray-100 group-hover:bg-blue-500 flex items-center justify-center text-gray-600 group-hover:text-white transition-colors duration-300">
+                    <div className="w-7 h-7 rounded-full bg-gray-100 group-hover:bg-blue-500 flex items-center justify-center text-gray-600 group-hover:text-white transition-colors duration-300 text-sm">
                       {String.fromCharCode(65 + index)}
                     </div>
-                    <span className="flex-1">{option}</span>
+                    <span className="flex-1 text-sm">{option}</span>
                   </div>
                 </button>
               ))}
@@ -523,7 +542,7 @@ export function EventDiagnosis({ onBack }: EventDiagnosisProps) {
                   setCurrentQuestion(currentQuestion - 1);
                   setAnswers(answers.slice(0, -1));
                 }}
-                className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+                className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors text-sm"
               >
                 前の質問に戻る
               </button>

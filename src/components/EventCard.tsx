@@ -1,5 +1,5 @@
 import { Calendar, MapPin, Tag } from 'lucide-react';
-import eventPlaceholder from 'figma:asset/842f53b379fcadb2595abb4d2222c70915a98078.png';
+import eventPlaceholder from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
 
 interface EventCardProps {
   event: {
@@ -12,9 +12,16 @@ interface EventCardProps {
     price: string;
     badge: string;
   };
+  onEventClick?: (event: any) => void;
 }
 
-export function EventCard({ event }: EventCardProps) {
+export function EventCard({ event, onEventClick }: EventCardProps) {
+  const handleClick = () => {
+    if (onEventClick) {
+      onEventClick(event);
+    }
+  };
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
       {/* イベント画像 */}
@@ -54,7 +61,10 @@ export function EventCard({ event }: EventCardProps) {
           </div>
         </div>
 
-        <button className="w-full bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded-xl hover:from-gray-800 hover:to-gray-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+        <button 
+          onClick={handleClick}
+          className="w-full bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded-xl hover:from-gray-800 hover:to-gray-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+        >
           詳細を見る
         </button>
       </div>
