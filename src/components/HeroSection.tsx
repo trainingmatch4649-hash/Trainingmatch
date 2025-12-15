@@ -46,15 +46,15 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       
       <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-16">
-          <h1 className="mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h1 className="mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent text-2xl md:text-4xl lg:text-5xl">
             あなたにぴったりのフィットネス大会を見つけよう
           </h1>
-          <p className="text-slate-300 text-lg">
+          <p className="text-slate-300 text-sm md:text-lg">
             初めての大会参加でも安心、レベル、種目、地域から自分に合った大会を簡単に検索できます。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
           {features.map((feature, index) => (
             <button
               key={index}
