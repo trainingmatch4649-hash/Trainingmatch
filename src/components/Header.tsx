@@ -1,4 +1,4 @@
-import logoImage from 'figma:asset/4e242e5c873691cd8e9b35f9bac60306205fbc83.png';
+import logoImage from 'figma:asset/Bcm_[jp]ai_A_clean_and_iconic_workout_competition_logo,__inspired_by_sports_c9a3a95a-5036-4c51-80cf-dba722cfe67b.png';
 
 export function Header() {
   return (
