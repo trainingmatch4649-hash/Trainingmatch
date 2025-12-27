@@ -1,5 +1,6 @@
 import { ArrowLeft, Calendar, MapPin, Tag, Users, Clock, Award, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import eventPlaceholder from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
+import { useEffect } from 'react';
 
 interface Event {
   id: number;
@@ -18,6 +19,11 @@ interface EventDetailProps {
 }
 
 export function EventDetail({ event, onBack }: EventDetailProps) {
+  // ページトップにスクロール
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // LEMON CLASSIC 2025 FUKUOKA の特別な詳細情報
   const isLemonFukuoka = event.name === 'LEMON CLASSIC' && event.year === '2025 FUKUOKA';
   
@@ -40,7 +46,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     'ノービスフィジーク-175',
     'ノービスフィジーク+175',
     'ノービスボディビル',
-    'ビキ��',
+    'ビキ',
     'オープンボディビル',
     'クラシクフィジーク',
     'オープンフィジーク'
@@ -89,7 +95,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     ],
     prize: {
       classic: 'クラシックフィジーク　優勝 10万円',
-      physique: 'フィジーク���ープン　優勝 10万円',
+      physique: 'フィジークープン　優勝 10万円',
       bodybuilding: 'ボディビルオープン　優勝10万円',
       note: '※各カテゴリーごとに上記賞金を授与'
     }
