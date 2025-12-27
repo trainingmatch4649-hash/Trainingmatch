@@ -197,9 +197,9 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
     const allEvents = [
       {
         id: 1,
-        name: 'LEMON CLASSIC',
-        year: '2025 FUKUOKA',
-        category: 'ビキニ',
+        name: 'LEMON CLASSIC 2025 FUKUOKA',
+        year: '',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年7月20日',
         monthsFromNow: 7,
         location: '福岡県福岡市・パピヨン24ガスホール',
@@ -212,20 +212,20 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
         id: 2,
         name: 'LEMON CLASSIC 2025 TOKYO',
         year: '',
-        category: 'メンズフィジーク',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年9月6日',
         monthsFromNow: 9,
         location: '東京都江東区・TFTホール',
         price: '参加費: 6,000円',
-        badge: '初心者向け',
-        level: 'beginner',
-        types: ['beginner-fun', 'beginner-growth', 'community']
+        badge: '経験者向け',
+        level: 'experienced',
+        types: ['advanced-competitive', 'balanced']
       },
       {
         id: 3,
         name: 'LEMON CLASSIC 2025 OSAKA',
         year: '',
-        category: 'ベストボディ',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年7月5日',
         monthsFromNow: 7,
         location: '大阪府大阪市・大阪国際交流センター',
@@ -238,46 +238,46 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
         id: 4,
         name: 'LEMON CLASSIC 2025 NAGOYA',
         year: '',
-        category: 'クラシックフィジーク',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年8月16日',
         monthsFromNow: 8,
         location: '愛知県名古屋市・名古屋市公会堂',
         price: '参加費: 6,000円',
-        badge: '中級者向け',
-        level: 'intermediate',
-        types: ['advanced-competitive', 'balanced']
+        badge: '初心者向け',
+        level: 'beginner',
+        types: ['beginner-fun', 'beginner-growth', 'balanced']
       },
       {
         id: 5,
-        name: 'LEMON CLASSIC',
-        year: '2025 OKINAWA',
-        category: 'ベストボディ',
+        name: 'LEMON CLASSIC 2025 OKINAWA',
+        year: '',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年8月30日',
         monthsFromNow: 8,
         location: '沖縄県沖縄市・てだこホール',
-        price: '参加費: 6,000円',
-        badge: '経験者向け',
-        level: 'experienced',
-        types: ['advanced-competitive']
-      },
-      {
-        id: 6,
-        name: 'LEMON CLASSIC JAPAN',
-        year: '2025 HIROSHIMA',
-        category: 'ウィメンズフィジーク',
-        date: '2025年9月15日',
-        monthsFromNow: 9,
-        location: '広島県広島市・フェニックスホール',
         price: '参加費: 6,000円',
         badge: '初心者向け',
         level: 'beginner',
         types: ['beginner-fun', 'community', 'balanced']
       },
       {
+        id: 6,
+        name: 'LEMON CLASSIC 2025 HIROSHIMA',
+        year: '',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
+        date: '2025年9月15日',
+        monthsFromNow: 9,
+        location: '広島県広島市・フェニックスホール',
+        price: '参加費: 6,000円',
+        badge: '経験者向け',
+        level: 'experienced',
+        types: ['advanced-competitive', 'community']
+      },
+      {
         id: 7,
         name: 'LEMON CLASSIC 2025 SAPPORO',
         year: '',
-        category: 'メンズフィジーク',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年10月12日',
         monthsFromNow: 10,
         location: '北海道札幌市・札幌コンベンションセンター',
@@ -288,9 +288,9 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
       },
       {
         id: 8,
-        name: 'LEMON CLASSIC SENDAI',
-        year: '2025',
-        category: 'ビキニ',
+        name: 'LEMON CLASSIC 2025 SENDAI',
+        year: '',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年8月9日',
         monthsFromNow: 8,
         location: '宮城県仙台市・仙台サンプラザ',
@@ -301,9 +301,9 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
       },
       {
         id: 9,
-        name: 'LEMON CLASSIC KYOTO',
-        year: '2025',
-        category: 'ボディビル',
+        name: 'LEMON CLASSIC 2025 KYOTO',
+        year: '',
+        category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
         date: '2025年7月27日',
         monthsFromNow: 7,
         location: '京都府京都市・京都会館',
@@ -326,7 +326,7 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
       let score = 0;
       
       // 1. カテゴリーが一致するか（最重要）
-      if (event.category === category) {
+      if (event.category.includes(category)) {
         score += 50;
       }
       

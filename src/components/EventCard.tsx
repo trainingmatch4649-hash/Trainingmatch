@@ -6,7 +6,7 @@ interface EventCardProps {
     id: number;
     name: string;
     year: string;
-    category: string;
+    category: string | string[];
     date: string;
     location: string;
     price: string;
@@ -42,8 +42,21 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
         <h3 className="mb-1">{event.name}</h3>
         {event.year && <div className="text-gray-600 mb-3">{event.year}</div>}
         
-        <div className="inline-block bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 px-4 py-2 rounded-full text-sm mb-4">
-          {event.category}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {Array.isArray(event.category) ? (
+            event.category.map((cat, index) => (
+              <span 
+                key={index}
+                className="inline-block bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 px-3 py-1.5 rounded-full text-xs md:text-sm"
+              >
+                {cat}
+              </span>
+            ))
+          ) : (
+            <span className="inline-block bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 px-4 py-2 rounded-full text-xs md:text-sm">
+              {event.category}
+            </span>
+          )}
         </div>
 
         <div className="space-y-3 mb-6">

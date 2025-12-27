@@ -18,23 +18,90 @@ interface EventDetailProps {
 }
 
 export function EventDetail({ event, onBack }: EventDetailProps) {
-  const details = {
-    overview: `${event.name}は、${event.badge}の大会です。初めての大会参加の方から経験者まで、幅広いレベルの選手が参加できる大会となっています。充実したサポート体制と、フェアな審査基準で、参加者の皆様に最高の体験をお届けします。本大会は${event.category}部門を中心に、全国から多くの選手が集まる注目の大会です。`,
+  // LEMON CLASSIC 2025 FUKUOKA の特別な詳細情報
+  const isLemonFukuoka = event.name === 'LEMON CLASSIC' && event.year === '2025 FUKUOKA';
+  
+  // LEMON CLASSIC 2025 OSAKA の特別な詳細情報
+  const isLemonOsaka = event.name === 'LEMON CLASSIC 2025 OSAKA';
+  
+  // LEMON CLASSIC 2025 FUKUOKA のカテゴリー
+  const lemonFukuokaCategories = [
+    'ビキニ',
+    'ノービスフィジーク',
+    'オープンフィジーク',
+    'クラシックフィジーク',
+    'ノービスボディビル',
+    'オープンボディビル'
+  ];
+  
+  // LEMON CLASSIC 2025 OSAKA のカテゴリー
+  const lemonOsakaCategories = [
+    'ノービスフィジーク-170',
+    'ノービスフィジーク-175',
+    'ノービスフィジーク+175',
+    'ノービスボディビル',
+    'ビキ��',
+    'オープンボディビル',
+    'クラシクフィジーク',
+    'オープンフィジーク'
+  ];
+  
+  const details = isLemonFukuoka ? {
+    overview: 'ボディビルの魅力を全国に伝えたい！出場される選手とお越しいただける観客の気持ちに寄り添った大会を目指します。 今年度は大阪、福岡、名古屋、沖縄、東京、では初心者でも出場しやすい大会 広島では上位入賞者へ賞金総額500万円を出す大会を開催します！',
     date: event.date,
-    dateDetail: '開場 09:00 / 開始 10:00 / 終了予定 17:00',
     venue: event.location,
-    venueDetail: '最寄り駅より徒歩5分、駐車場100台完備（無料）',
     price: event.price,
-    priceDetail: '※参加費には大会参加費、審査費用、記念Tシャツが含まれます',
-    recruitmentPeriod: '2025年4月1日（火）〜 2025年6月30���（月）',
+    recruitmentPeriod: '2025年4月20日 20:00 〜 2025年7月6日 20:00',
+    recruitmentDetail: '※定員に達し次第、募集を締め切らせていただきます',
+    requirements: [
+      '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
+    ],
+    prize: {
+      classic: 'クラシックフィジーク　優勝 10万円',
+      physique: 'フィジークオープン　優勝 10万円',
+      bodybuilding: 'ボディビルオープン　優勝 10万円',
+      note: '※各カテゴリーごとに上記賞金を授与'
+    }
+  } : isLemonOsaka ? {
+    overview: `昨年度からの変更点といたしまして、今大会は予選を行わず、本戦1回のみの審査となります。
+
+また、選手の出場時間を長く取るため、フィジークとビキニに関しましては選手登場時15〜30秒のIウォークを用意させていただきます。ステージの中央から出ていただき、自由にポージングしていただけます。Iウォークは審査には影響致しません。
+
+ボディビルとクラシックフィジークに関しましては、比較審査前に全員にフリーポーズを行っていただけます。こちらもIウォークと同様にフリーポーズは審査に影響致しません。
+
+また、カテゴリーごとの出場順は以下の通りとなります。
+
+-ノービスフィジーク-170
+-ノービスフィジーク-175
+-ノービスフィジーク+175
+-ノービスボディビル
+-ビキニ
+-オープンボディビル
+-クラシクフィジーク
+-オープンフィジーク`,
+    date: event.date,
+    venue: event.location,
+    price: event.price,
+    recruitmentPeriod: '4/5 20:00～6/21 20:00',
+    recruitmentDetail: '',
+    requirements: [
+      '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
+    ],
+    prize: {
+      classic: 'クラシックフィジーク　優勝 10万円',
+      physique: 'フィジーク���ープン　優勝 10万円',
+      bodybuilding: 'ボディビルオープン　優勝10万円',
+      note: '※各カテゴリーごとに上記賞金を授与'
+    }
+  } : {
+    overview: 'ボディビルの魅力を全国に伝えたい！出場される選手とお越しいただける観客の気持ちに寄り添った大会を目指します。 今年度は大阪、福岡、名古屋、沖縄、東京、では初心者でも出場しやすい大会 広島では上位入賞者へ賞金総額500万円を出す大会を開催します！',
+    date: event.date,
+    venue: event.location,
+    price: event.price,
+    recruitmentPeriod: '2025年4月1日（火）〜 2025年6月30（月）',
     recruitmentDetail: '※定員に達し次第、募集を締め切らせていただきます（定員：各部門50名）',
     requirements: [
-      '18歳以上の健康な方（高校生不可）',
-      '大会規定のポージングウェア着用必須',
-      '事前エントリーが必要（当日受付不可）',
-      '参加費の事前振込が必要',
-      'タンニング（日焼け）は任意ですが推奨',
-      '医師の診断書提出（初回参加のみ）'
+      '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
     ],
     prize: {
       champion: '優勝：10万円 + トロフィー + 副賞',
@@ -104,7 +171,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               <div className="w-1 h-4 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full"></div>
               大会概要
             </h3>
-            <p className="text-gray-700 leading-relaxed text-sm">
+            <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
               {details.overview}
             </p>
           </div>
@@ -116,8 +183,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               開催日時
             </h3>
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
-              <div className="mb-1">{details.date}</div>
-              <div className="text-gray-600 text-sm">{details.dateDetail}</div>
+              <div>{details.date}</div>
             </div>
           </div>
 
@@ -128,8 +194,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               会場
             </h3>
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200">
-              <div className="mb-1 text-sm">{details.venue}</div>
-              <div className="text-gray-600 text-sm">{details.venueDetail}</div>
+              <div className="text-sm">{details.venue}</div>
             </div>
           </div>
 
@@ -140,8 +205,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               参加費
             </h3>
             <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-4 border border-orange-200">
-              <div className="mb-1">{details.price}</div>
-              <div className="text-gray-600 text-xs">{details.priceDetail}</div>
+              <div>{details.price}</div>
             </div>
           </div>
 
@@ -151,8 +215,38 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               <Users className="w-4 h-4 text-green-500" />
               カテゴリー
             </h3>
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-              <div>{event.category}</div>
+            {isLemonFukuoka ? (
+              <div className="space-y-2">
+                {lemonFukuokaCategories.map((category, index) => (
+                  <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
+                    <div className="text-sm">{category}</div>
+                  </div>
+                ))}
+              </div>
+            ) : isLemonOsaka ? (
+              <div className="space-y-2">
+                {lemonOsakaCategories.map((category, index) => (
+                  <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
+                    <div className="text-sm">{category}</div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+                <div>{event.category}</div>
+              </div>
+            )}
+          </div>
+
+          {/* 募集期間 */}
+          <div className="mb-6">
+            <h3 className="mb-3 flex items-center gap-2 text-base">
+              <Clock className="w-4 h-4 text-teal-500" />
+              募集期間
+            </h3>
+            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-4 border border-teal-200">
+              <div className="mb-1">{details.recruitmentPeriod}</div>
+              <div className="text-gray-600 text-xs">{details.recruitmentDetail}</div>
             </div>
           </div>
 
@@ -179,44 +273,79 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               賞金
             </h3>
             <div className="space-y-3">
-              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
-                    1
+              {isLemonFukuoka || isLemonOsaka ? (
+                <>
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">クラシックフィジーク</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.classic}</div>
                   </div>
-                  <div className="text-base">優勝</div>
-                </div>
-                <div className="ml-10 text-gray-700 text-sm">{details.prize.champion}</div>
-              </div>
 
-              <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-4 border-2 border-gray-300 shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
-                    2
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">フィジークオープン</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.physique}</div>
                   </div>
-                  <div className="text-base">準優勝</div>
-                </div>
-                <div className="ml-10 text-gray-700 text-sm">{details.prize.second}</div>
-              </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4 border-2 border-orange-300 shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white text-sm shadow-md">
-                    3
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">ボディビルオープン</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.bodybuilding}</div>
                   </div>
-                  <div className="text-base">第3位</div>
-                </div>
-                <div className="ml-10 text-gray-700 text-sm">{details.prize.third}</div>
-              </div>
+                </>
+              ) : (
+                <>
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">優勝</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.champion}</div>
+                  </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
-                <div className="flex items-center gap-2 mb-1">
-                  <Sparkles className="w-4 h-4 text-blue-500" />
-                  <div className="text-sm">特別賞</div>
-                </div>
-                <div className="ml-6 text-gray-700 text-xs">{details.prize.special}</div>
-              </div>
+                  <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-4 border-2 border-gray-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        2
+                      </div>
+                      <div className="text-base">準優勝</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.second}</div>
+                  </div>
 
+                  <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4 border-2 border-orange-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        3
+                      </div>
+                      <div className="text-base">第3位</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.third}</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Sparkles className="w-4 h-4 text-blue-500" />
+                      <div className="text-sm">特別賞</div>
+                    </div>
+                    <div className="ml-6 text-gray-700 text-xs">{details.prize.special}</div>
+                  </div>
+                </>
+              )}
               <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <p className="text-xs text-gray-600">{details.prize.note}</p>
               </div>
@@ -252,10 +381,15 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               <div className="mb-1">{event.name}</div>
               <div className="text-sm text-white/80">{event.date} | {event.price}</div>
             </div>
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors duration-300 shadow-lg flex items-center gap-2">
+            <a 
+              href="https://lemon-classic.com/2025/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-white text-blue-600 px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors duration-300 shadow-lg flex items-center gap-2"
+            >
               <Award className="w-5 h-5" />
               今すぐエントリー
-            </button>
+            </a>
           </div>
         </div>
       </div>
