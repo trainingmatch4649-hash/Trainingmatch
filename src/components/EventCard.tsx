@@ -1,5 +1,5 @@
 import { Calendar, MapPin, Tag } from 'lucide-react';
-import eventPlaceholder from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
+import eventPlaceholder from 'figma:asset/4913_667be7d05fa3a.png';
 
 interface EventCardProps {
   event: {
