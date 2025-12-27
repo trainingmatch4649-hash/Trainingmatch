@@ -19,10 +19,12 @@ export function SimpleSearch({ filters, onFilterChange, onNavigate }: SimpleSear
   const categories = [
     'メンズフィジーク',
     'ビキニ',
-    'ボディビル',
+    'ウェルネス',
+    'フィギュア',
     'ウィメンズフィジーク',
-    'ベストボディ',
-    'クラシックフィジーク'
+    'クラシックフィジーク',
+    'ボディビルディング',
+    'フィットモデル'
   ];
 
   const regions = [

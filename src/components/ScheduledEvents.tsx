@@ -109,8 +109,22 @@ export function ScheduledEvents({ onBack, onEventClick, searchFilters }: Schedul
     }
 
     // カテゴリーフィルター
-    if (filters.category !== 'すべて' && !event.category.includes(filters.category)) {
-      return false;
+    if (filters.category !== 'すべて') {
+      // 「ボディビルディング」選択時は「ノービスボディビル」と「オープンボディビル」の両方を含むものを検索
+      if (filters.category === 'ボディビルディング') {
+        if (!event.category.includes('ノービスボディビル') || !event.category.includes('オープンボディビル')) {
+          return false;
+        }
+      } 
+      // 「メンズフィジーク」選択時は「ノービスフィジーク」と「オープンフィジーク」の両方を含むものを検索
+      else if (filters.category === 'メンズフィジーク') {
+        if (!event.category.includes('ノービスフィジーク') || !event.category.includes('オープンフィジーク')) {
+          return false;
+        }
+      } 
+      else if (!event.category.includes(filters.category)) {
+        return false;
+      }
     }
 
     // 地域フィルター
@@ -182,6 +196,7 @@ export function ScheduledEvents({ onBack, onEventClick, searchFilters }: Schedul
                 <option>ベストボディ</option>
                 <option>クラシックフィジーク</option>
                 <option>ウィメンズフィジーク</option>
+                <option>ボディビルディング</option>
               </select>
               <ChevronDown className="absolute right-3 top-9 w-5 h-5 text-gray-400 pointer-events-none" />
             </div>
