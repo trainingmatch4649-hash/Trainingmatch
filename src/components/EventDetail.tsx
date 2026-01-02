@@ -148,11 +148,11 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         </button>
 
         {/* メイン画像 */}
-        <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl">
+        <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
           <img 
             src="https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"
             alt={event.name}
-            className="w-full h-96 object-cover"
+            className="w-full h-64 object-contain p-8"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">

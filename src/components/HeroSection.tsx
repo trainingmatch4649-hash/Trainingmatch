@@ -46,7 +46,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       
       <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-12 mt-6 md:mt-10">
-          <h1 className="mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent text-2xl md:text-5xl lg:text-6xl">
+          <h1 className="mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent text-2xl md:text-5xl lg:text-6xl overflow-visible" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700, letterSpacing: '0.05em', lineHeight: '1.4', paddingBottom: '0.2em' }}>
             Training Match
           </h1>
           <p className="text-slate-300 text-sm md:text-lg">
