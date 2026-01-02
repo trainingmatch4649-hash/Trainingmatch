@@ -1,5 +1,4 @@
 import { ArrowLeft, Calendar, MapPin, Tag, Users, Clock, Award, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
-import eventPlaceholder from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
 import { useEffect } from 'react';
 
 interface Event {
@@ -151,7 +150,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl">
           <img 
-            src={eventPlaceholder}
+            src="https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"
             alt={event.name}
             className="w-full h-96 object-cover"
           />

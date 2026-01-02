@@ -1,4 +1,4 @@
-import logoImage from 'logo.png';
+import logoImage from 'figma:asset/Bcm_[jp]ai_A_clean_and_iconic_workout_competition_logo,__inspired_by_sports_c9a3a95a-5036-4c51-80cf-dba722cfe67b.png';
 
 export function Header() {
   return (
@@ -6,7 +6,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl flex items-center justify-center bg-white/10 backdrop-blur-sm">
-            <img src={logoImage} alt="Training Match Logo" className="w-full h-full object-contain" />
+            <img src="https://horrible-green-zp0hxcfufe.edgeone.app/logo.png" alt="Training Match Logo" className="w-full h-full object-contain" />
           </div>
           <span className="text-sm md:text-base text-white">
             Training Match
