@@ -1,5 +1,5 @@
 import { Calendar, MapPin, Tag } from 'lucide-react';
-import eventPlaceholder from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
+// ↓ 元あった figma:asset... の行は削除しました
 
 interface EventCardProps {
   event: {
@@ -26,11 +26,14 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
       {/* イベント画像 */}
       <div className="relative overflow-hidden">
+        {/* ▼ ここを指定されたファイル名に書き換えました ▼ */}
         <img 
-          src={eventPlaceholder}
+          src="/lemoncrassic_logo.png" 
           alt={event.name}
           className="w-full h-48 object-cover bg-black group-hover:scale-105 transition-transform duration-500"
         />
+        {/* ▲ ここまで ▲ */}
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm shadow-lg">
           {event.badge}
@@ -39,7 +42,8 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
 
       {/* イベント詳細 */}
       <div className="p-6">
-        <h3 className="mb-1">{event.name}</h3>
+        {/* タイトルの文字サイズを少し調整しました */}
+        <h3 className="mb-1 text-lg font-bold">{event.name}</h3>
         {event.year && <div className="text-gray-600 mb-3">{event.year}</div>}
         
         <div className="inline-block bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 px-4 py-2 rounded-full text-sm mb-4">
