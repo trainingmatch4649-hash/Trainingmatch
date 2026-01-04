@@ -37,7 +37,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-gray-900 text-white px-6 py-20 relative overflow-hidden">
+    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-gray-900 text-white px-6 py-8 md:py-14 relative overflow-hidden">
       {/* 背景装飾 */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
@@ -45,12 +45,12 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       </div>
       
       <div className="max-w-7xl mx-auto relative">
-        <div className="text-center mb-16">
-          <h1 className="mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent text-2xl md:text-4xl lg:text-5xl">
-            あなたにぴったりのフィットネス大会を見つけよう
+        <div className="text-center mb-12 mt-6 md:mt-10">
+          <h1 className="mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent text-2xl md:text-5xl lg:text-6xl overflow-visible" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700, letterSpacing: '0.05em', lineHeight: '1.4', paddingBottom: '0.2em' }}>
+            Training Match
           </h1>
           <p className="text-slate-300 text-sm md:text-lg">
-            初めての大会参加でも安心、レベル、種目、地域から自分に合った大会を簡単に検索できます。
+            挑戦の第一歩を、ここから
           </p>
         </div>
 

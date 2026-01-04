@@ -12,9 +12,9 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
   const beginnerEvents = [
     {
       id: 1,
-      name: 'LEMON CLASSIC',
-      year: '2025 FUKUOKA',
-      category: 'ビキニ',
+      name: 'LEMON CLASSIC 2025 FUKUOKA',
+      year: '',
+      category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
       date: '2025年7月20日',
       location: '福岡県福岡市・パピヨン24ガスホール',
       price: '6,000円',
@@ -22,11 +22,21 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
     },
     {
       id: 2,
-      name: 'LEMON CLASSIC 2025 TOKYO',
+      name: 'LEMON CLASSIC 2025 NAGOYA',
       year: '',
-      category: 'メンズフィジーク',
-      date: '2025年9月6日',
-      location: '東京都江東区・TFTホール',
+      category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
+      date: '2025年8月16日',
+      location: '愛知県名古屋市・名古屋市公会堂',
+      price: '参加費: 6,000円',
+      badge: '初心者向け'
+    },
+    {
+      id: 3,
+      name: 'LEMON CLASSIC 2025 OKINAWA',
+      year: '',
+      category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
+      date: '2025年8月30日',
+      location: '沖縄県沖縄市・てだこホール',
       price: '参加費: 6,000円',
       badge: '初心者向け'
     }
@@ -34,22 +44,32 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
 
   const experiencedEvents = [
     {
-      id: 3,
+      id: 4,
       name: 'LEMON CLASSIC 2025 OSAKA',
       year: '',
-      category: 'ベストボディ',
+      category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
       date: '2025年7月5日',
       location: '大阪府大阪市・大阪国際交流センター',
       price: '参加費: 6,000円',
       badge: '経験者向け'
     },
     {
-      id: 4,
-      name: 'LEMON CLASSIC 2025 NAGOYA',
+      id: 5,
+      name: 'LEMON CLASSIC 2025 TOKYO',
       year: '',
-      category: 'クラシックフィジーク',
-      date: '2025年8月16日',
-      location: '愛知県名古屋市・名古屋市公会堂',
+      category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
+      date: '2025年9月6日',
+      location: '東京都江東区・TFTホール',
+      price: '参加費: 6,000円',
+      badge: '経験者向け'
+    },
+    {
+      id: 6,
+      name: 'LEMON CLASSIC 2025 HIROSHIMA',
+      year: '',
+      category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
+      date: '2025年9月15日',
+      location: '広島県広島市・フェニックスホール',
       price: '参加費: 6,000円',
       badge: '経験者向け'
     }

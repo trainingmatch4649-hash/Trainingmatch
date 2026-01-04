@@ -19,27 +19,49 @@ export function SimpleSearch({ filters, onFilterChange, onNavigate }: SimpleSear
   const categories = [
     'メンズフィジーク',
     'ビキニ',
-    'ボディビル',
+    'ウェルネス',
+    'フィギュア',
     'ウィメンズフィジーク',
-    'ベストボディ',
-    'クラシックフィジーク'
+    'クラシックフィジーク',
+    'ボディビルディング',
+    'フィットモデル'
   ];
 
   const regions = [
-    '関東',
-    '関西',
-    '中部',
-    '九州',
     '北海道',
-    '東北'
+    '東北',
+    '関東',
+    '中部',
+    '関西',
+    '中国',
+    '四国',
+    '九州'
   ];
+
+  const handleLevelSelect = (levelId: string) => {
+    const levelLabel = levels.find(l => l.id === levelId)?.label || '';
+    onFilterChange({ ...filters, level: levelLabel });
+  };
+
+  const handleReset = () => {
+    onFilterChange({ level: '', category: '', region: '' });
+  };
 
   return (
     <div id="simple-search" className="bg-white px-6 py-16">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="mb-2">簡単検索</h2>
-          <p className="text-gray-600">複数の条件を選択して、あなたに合った大会を見つけよう</p>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+              <Search className="w-4 h-4 text-white" />
+            </div>
+            <h2 className="mb-0">簡単検索</h2>
+          </div>
+          <p className="text-gray-600 text-sm md:text-base">
+            複数の条件を選択して、
+            <br />
+            あなたに合った大会を見つけよう
+          </p>
         </div>
 
         {/* レベルから探す */}
@@ -52,9 +74,9 @@ export function SimpleSearch({ filters, onFilterChange, onNavigate }: SimpleSear
             {levels.map((level) => (
               <button
                 key={level.id}
-                onClick={() => onFilterChange({ ...filters, level: level.id })}
+                onClick={() => handleLevelSelect(level.id)}
                 className={`text-left p-4 rounded-lg border-2 transition-colors ${
-                  filters.level === level.id
+                  filters.level === level.label
                     ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
@@ -114,7 +136,7 @@ export function SimpleSearch({ filters, onFilterChange, onNavigate }: SimpleSear
 
         {/* アクションボタン */}
         <div className="flex gap-4 justify-center">
-          <button className="px-6 py-3 text-gray-600 hover:text-gray-800">
+          <button className="px-6 py-3 text-gray-600 hover:text-gray-800" onClick={handleReset}>
             リセット
           </button>
           <button 
