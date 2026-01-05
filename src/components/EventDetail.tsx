@@ -152,7 +152,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
           <img 
             src="/lemoncrassic_logo.png"
             alt={event.name}
-            className="w-full h-64 object-cover object-center"
+            className="w-full h-64 object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -161,7 +161,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
             </div>
             <h1 className="mb-2 text-white">{event.name}</h1>
             {event.year && <p className="text-xl text-white/90">{event.year}</p>}
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         </div>
 
         {/* 大会情報 */}
