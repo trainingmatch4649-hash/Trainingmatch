@@ -2,7 +2,7 @@ import logoImage from '/logo.png';
 
 export function Header() {
   return (
-    <header className="bg-red-500 text-white p-4">
+    <header style={{ background: "red" }} className="text-white p-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl flex items-center justify-center bg-white/10 backdrop-blur-sm">
