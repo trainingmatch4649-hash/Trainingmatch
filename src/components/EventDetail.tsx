@@ -24,7 +24,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
   }, []);
 
   // LEMON CLASSIC 2025 FUKUOKA の特別な詳細情報
-  const isLemonFukuoka = event.name === 'LEMON CLASSIC' && event.year === '2025 FUKUOKA';
+  const isLemonFukuoka = event.name === 'LEMON CLASSIC 2025 FUKUOKA';
   
   // LEMON CLASSIC 2025 OSAKA の特別な詳細情報
   const isLemonOsaka = event.name === 'LEMON CLASSIC 2025 OSAKA';
@@ -149,20 +149,25 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
 
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
-          <img 
+          <img
             src="/lemoncrassic_logo.png"
             alt={event.name}
             className="w-full h-64 object-cover"
           />
+
+          {/* 画像上の暗いグラデ */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+          {/* 文字エリア */}
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-sm mb-4">
               {event.badge}
             </div>
             <h1 className="mb-2 text-white">{event.name}</h1>
             {event.year && <p className="text-xl text-white/90">{event.year}</p>}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          </div>
         </div>
+
 
         {/* 大会情報 */}
         <div className="bg-white rounded-2xl p-6 mb-6 shadow-lg">
