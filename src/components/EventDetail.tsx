@@ -138,7 +138,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
           <img 
             src="/lemoncrassic_logo.png"
             alt={event.name}
-            className="w-full h-64 object-contain p-8"
+            className="w-full h-64 object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
