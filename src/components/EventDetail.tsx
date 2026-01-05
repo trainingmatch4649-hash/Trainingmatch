@@ -45,7 +45,6 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     venue: event.location,
     price: event.price,
     recruitmentPeriod: '2025年4月20日 20:00 〜 2025年7月6日 20:00',
-    recruitmentDetail: '※定員に達し次第、募集を締め切らせていただきます',
     requirements: [
       '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
     ],
@@ -92,7 +91,6 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     venue: event.location,
     price: event.price,
     recruitmentPeriod: '2025年4月1日（火）〜 2025年6月30（月）',
-    recruitmentDetail: '※定員に達し次第、募集を締め切らせていただきます（定員：各部門50名）',
     requirements: [
       '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
     ],

@@ -28,7 +28,7 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
         <img 
           src="/lemoncrassic_logo.png"
           alt={event.name}
-          className="w-full h-48 object-cover bg-black group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-64 object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm shadow-lg">
