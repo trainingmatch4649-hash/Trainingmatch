@@ -45,7 +45,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     'ノービスフィジーク-175',
     'ノービスフィジーク+175',
     'ノービスボディビル',
-    'ビキ',
+    'ビキニ',
     'オープンボディビル',
     'クラシクフィジーク',
     'オープンフィジーク'
