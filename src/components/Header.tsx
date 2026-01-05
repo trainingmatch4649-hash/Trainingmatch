@@ -3,19 +3,18 @@ import logoImage from "/logo.png";
 export function Header() {
   return (
     <header className="sticky top-0 z-50">
-      {/* 前面：グラデーションを直接指定（ここが肝） */}
+      {/* 前面：ネイビー → インディゴ */}
       <div
         className="
           relative
           bg-gradient-to-r
-          from-slate-950
-          via-blue-950
+          from-blue-950
           to-indigo-950
           border-b border-blue-900/40
           shadow-lg
         "
       >
-        {/* 装飾（弱め・ほぼ見えないくらい） */}
+        {/* 装飾（かなり弱め） */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl" />
