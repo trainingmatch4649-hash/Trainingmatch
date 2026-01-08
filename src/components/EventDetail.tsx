@@ -45,6 +45,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     venue: event.location,
     price: event.price,
     recruitmentPeriod: '2025年4月20日 20:00 〜 2025年7月6日 20:00',
+    recruitmentDetail: '※定員に達し次第、募集を締め切らせていただきます',
     requirements: [
       '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
     ],
@@ -91,6 +92,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     venue: event.location,
     price: event.price,
     recruitmentPeriod: '2025年4月1日（火）〜 2025年6月30（月）',
+    recruitmentDetail: '※定員に達し次第、募集を締め切らせていただきます（定員：各部門50名）',
     requirements: [
       '特になし。（出場歴、成績、加盟ジム、所属団体、年齢、タトゥー、国籍等は関係なく出場可能となります。）'
     ],
@@ -136,9 +138,9 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
           <img 
-            src="/lemoncrassic_logo.png"
+            src="https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"
             alt={event.name}
-            className="w-full h-64 object-cover"
+            className="w-full h-64 object-contain p-8"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">

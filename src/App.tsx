@@ -63,6 +63,7 @@ export default function App() {
         <ScheduledEvents 
           onBack={() => setCurrentView('home')}
           onEventClick={handleEventClick}
+          searchFilters={searchFilters}
         />
       )}
 
