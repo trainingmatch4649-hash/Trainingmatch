@@ -368,24 +368,47 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         </div>
 
         {/* エントリーボタン（固定） */}
-        <div className="sticky bottom-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-6 shadow-2xl">
-          <div className="flex items-center justify-between max-w-4xl mx-auto">
-            <div>
-              <div className="mb-1">{event.name}</div>
-              <div className="text-sm text-white/80">{event.date} | {event.price}</div>
+        <div className="sticky bottom-6 mx-4 md:mx-auto max-w-4xl z-40">
+          <div className="bg-blue-950 border border-blue-900 shadow-[0_8px_30px_rgb(0,0,0,0.5)] rounded-2xl p-5 md:p-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              {/* 左側：イベント情報 */}
+              <div className="text-center md:text-left">
+                <h3 
+                  className="text-lg md:text-xl font-bold text-white tracking-wide" 
+                  style={{ fontFamily: "'Rajdhani', sans-serif" }}
+                >
+                  {event.name}
+                </h3>
+                <div className="flex items-center justify-center md:justify-start gap-3 mt-1 text-sm">
+                  <span className="text-white/60">{event.date}</span>
+                  <span className="w-px h-3 bg-white/20"></span>
+                  <span className="font-bold text-blue-400">{event.price}</span>
+                </div>
+              </div>
+              
+              {/* 右側：アクションボタン */}
+              <a 
+                href="https://lemon-classic.com/2025/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="
+                  w-full md:w-auto
+                  bg-blue-600 hover:bg-blue-500
+                  text-white font-bold text-lg
+                  px-10 py-3.5 rounded-xl
+                  transition-colors duration-200
+                  flex items-center justify-center gap-2
+                  shadow-lg shadow-blue-900/20
+                "
+              >
+                <Award className="w-5 h-5" />
+                <span>今すぐエントリー</span>
+              </a>
             </div>
-            <a 
-              href="https://lemon-classic.com/2025/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-white text-blue-600 px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors duration-300 shadow-lg flex items-center gap-2"
-            >
-              <Award className="w-5 h-5" />
-              今すぐエントリー
-            </a>
           </div>
         </div>
-      </div>
+
+      <div>
     </div>
   );
 }
