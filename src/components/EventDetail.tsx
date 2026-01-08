@@ -367,29 +367,29 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
           </div>
         </div>
 
-        {/* エントリーボタン（固定） */}
-        <div className="sticky bottom-6 mx-4 md:mx-auto max-w-4xl z-40">
+         {/* エントリーボタン（固定） */}
+         <div className="sticky bottom-6 mx-4 md:mx-auto max-w-4xl z-40">
           <div className="bg-blue-950 border border-blue-900 shadow-[0_8px_30px_rgb(0,0,0,0.5)] rounded-2xl p-5 md:p-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* 左側：イベント情報 */}
               <div className="text-center md:text-left">
-                <h3 
-                  className="text-lg md:text-xl font-bold text-white tracking-wide" 
+                <h3
+                  className="text-lg md:text-xl font-bold text-white tracking-wide"
                   style={{ fontFamily: "'Rajdhani', sans-serif" }}
                 >
                   {event.name}
                 </h3>
                 <div className="flex items-center justify-center md:justify-start gap-3 mt-1 text-sm">
                   <span className="text-white/60">{event.date}</span>
-                  <span className="w-px h-3 bg-white/20"></span>
+                  <span className="w-px h-3 bg-white/20" />
                   <span className="font-bold text-blue-400">{event.price}</span>
                 </div>
               </div>
-              
+
               {/* 右側：アクションボタン */}
-              <a 
-                href="https://lemon-classic.com/2025/" 
-                target="_blank" 
+              <a
+                href="https://lemon-classic.com/2025/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="
                   w-full md:w-auto
@@ -404,11 +404,11 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
                 <Award className="w-5 h-5" />
                 <span>今すぐエントリー</span>
               </a>
-            </div> 
+            </div>
           </div>
         </div>
 
-        </div>   {/* max-w-5xl */}
-    </div>  {/* min-h-screen */}
+      </div> {/* max-w-5xl */}
+    </div> {/* min-h-screen */}
   );
 }
