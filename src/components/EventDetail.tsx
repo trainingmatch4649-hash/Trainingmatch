@@ -404,11 +404,11 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
                 <Award className="w-5 h-5" />
                 <span>今すぐエントリー</span>
               </a>
-            </div>
+            </div> 
           </div>
         </div>
 
-      <div>
-    </div>
+        </div>   {/* max-w-5xl */}
+    </div>  {/* min-h-screen */}
   );
 }
