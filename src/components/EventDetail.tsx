@@ -367,48 +367,51 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
           </div>
         </div>
 
-         {/* エントリーボタン（固定） */}
-         <div className="sticky bottom-6 mx-4 md:mx-auto max-w-4xl z-40">
-          <div className="bg-blue-950 border border-blue-900 shadow-[0_8px_30px_rgb(0,0,0,0.5)] rounded-2xl p-5 md:p-6">
+        {/* エントリーボタン（固定） */}
+        <div className="sticky bottom-6 mx-4 md:mx-auto max-w-4xl z-40">
+          <div className="bg-blue-950/90 backdrop-blur-xl border border-white/10 text-white rounded-3xl p-5 md:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* 左側：イベント情報 */}
               <div className="text-center md:text-left">
-                <h3
-                  className="text-lg md:text-xl font-bold text-white tracking-wide"
-                  style={{ fontFamily: "'Rajdhani', sans-serif" }}
-                >
+                <div className="text-[10px] uppercase tracking-[0.2em] text-blue-400 font-bold mb-1">
+                  Registration Open
+                </div>
+                <h3 className="text-lg md:text-xl font-bold tracking-tight" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
                   {event.name}
                 </h3>
-                <div className="flex items-center justify-center md:justify-start gap-3 mt-1 text-sm">
-                  <span className="text-white/60">{event.date}</span>
-                  <span className="w-px h-3 bg-white/20" />
-                  <span className="font-bold text-blue-400">{event.price}</span>
+                <div className="flex items-center justify-center md:justify-start gap-3 mt-1 text-sm text-white/60">
+                  <span className="flex items-center gap-1.5">
+                    <span className="opacity-50">📅</span> {event.date}
+                  </span>
+                  <span className="w-1 h-1 bg-white/20 rounded-full"></span>
+                  <span className="font-bold text-blue-300">{event.price}</span>
                 </div>
               </div>
-
+              
               {/* 右側：アクションボタン */}
-              <a
-                href="https://lemon-classic.com/2025/"
-                target="_blank"
+              <a 
+                href="https://lemon-classic.com/2025/" 
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="
-                  w-full md:w-auto
-                  bg-blue-600 hover:bg-blue-500
-                  text-white font-bold text-lg
-                  px-10 py-3.5 rounded-xl
-                  transition-colors duration-200
+                  group relative w-full md:w-auto overflow-hidden
+                  bg-blue-600 px-10 py-4 rounded-2xl
+                  transition-all duration-300 
+                  hover:bg-blue-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]
+                  active:scale-95
                   flex items-center justify-center gap-2
-                  shadow-lg shadow-blue-900/20
                 "
               >
-                <Award className="w-5 h-5" />
-                <span>今すぐエントリー</span>
+                {/* 光るアニメーション用のオーバーレイ */}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                
+                <Award className="w-5 h-5 text-white relative z-10" />
+                <span className="font-bold tracking-wider text-lg relative z-10">今すぐエントリー</span>
               </a>
             </div>
           </div>
         </div>
-
-      </div> {/* max-w-5xl */}
-    </div> {/* min-h-screen */}
+      </div>
+    </div>
   );
 }
