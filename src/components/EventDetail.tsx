@@ -1,6 +1,6 @@
 import { ArrowLeft, Calendar, MapPin, Tag, Users, Clock, Award, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import { useEffect } from 'react';
-import mrMuscleImage from '/Mr.Muscle.png';
+import mrMuscle2Image from '/Mr.Muscle2.png';
 import lemonClassicImage from '/lemoncrassic_logo.png';
 
 interface Event {
@@ -173,7 +173,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
           <img 
-            src={isMrMuscle ? mrMuscleImage : lemonClassicImage}
+            src={isMrMuscle ? mrMuscle2Image : lemonClassicImage}
             alt={event.name}
             className={isMrMuscle ? "w-full h-80 object-cover" : "w-full h-85 object-contain"}
           />
