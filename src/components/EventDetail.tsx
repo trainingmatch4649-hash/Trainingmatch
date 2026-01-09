@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, MapPin, Tag, Users, Clock, Award, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import { useEffect } from 'react';
 import mrMuscleImage from 'figma:asset/e93367d321ffb01b1219b125a34f1154f2c5b948.png';
+import lemonClassicImage from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
 
 interface Event {
   id: number;
@@ -172,7 +173,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
           <img 
-            src={isMrMuscle ? mrMuscleImage : "https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"}
+            src={isMrMuscle ? mrMuscleImage : lemonClassicImage}
             alt={event.name}
             className={isMrMuscle ? "w-full h-80 object-cover" : "w-full h-64 object-contain p-8"}
           />

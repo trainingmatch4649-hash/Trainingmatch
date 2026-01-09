@@ -17,7 +17,7 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
       category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
       date: '2025年8月3日',
       location: '福岡国際会議場',
-      price: '8,000円',
+      price: '6,000円',
       badge: '初心者歓迎'
     },
     {
@@ -27,7 +27,7 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
       category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
       date: '2025年7月20日',
       location: '名古屋国際会議場',
-      price: '8,000円',
+      price: '6,000円',
       badge: '初心者歓迎'
     },
     {
@@ -37,7 +37,7 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
       category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
       date: '2025年7月27日',
       location: '沖縄コンベンションセンター',
-      price: '8,000円',
+      price: '6,000円',
       badge: '初心者歓迎'
     },
     {
