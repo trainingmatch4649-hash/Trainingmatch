@@ -1,4 +1,4 @@
-import logoImage from 'figma:asset/Bcm_[jp]ai_A_clean_and_iconic_workout_competition_logo,__inspired_by_sports_c9a3a95a-5036-4c51-80cf-dba722cfe67b.png';
+import logoImage from '/logo.png';
 
 interface HeaderProps {
   onNavigateHome?: () => void;
@@ -13,7 +13,7 @@ export function Header({ onNavigateHome }: HeaderProps) {
           className="flex items-center gap-2 md:gap-3 cursor-pointer hover:opacity-80 transition-opacity"
         >
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl flex items-center justify-center bg-white/10 backdrop-blur-sm">
-            <img src="https://horrible-green-zp0hxcfufe.edgeone.app/logo.png" alt="Training Match Logo" className="w-full h-full object-contain" />
+            <img src="/logo.png" alt="Training Match Logo" className="w-full h-full object-contain" />
           </div>
           <span className="text-sm md:text-xl text-white tracking-wide overflow-visible" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700, letterSpacing: '0.05em', lineHeight: '1.6' }}>
             Training Match

@@ -1,6 +1,6 @@
 import { Calendar, MapPin, Tag } from 'lucide-react';
-import mrMuscleImage from 'figma:asset/e93367d321ffb01b1219b125a34f1154f2c5b948.png';
-import lemonClassicImage from 'figma:asset/cbac48ad02d5c04dc6379965d3ec47e76527ba47.png';
+import mrMuscleImage from '/Mr.Muscle.png';
+import lemonClassicImage from '/lemoncrassic_logo.png';
 
 interface EventCardProps {
   event: {
@@ -34,7 +34,7 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
       {/* イベント画像 */}
       <div className="relative overflow-hidden">
         <img 
-          src={isMrMuscle ? mrMuscleImage : (isLemonClassic ? lemonClassicImage : "https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png")}
+          src={isMrMuscle ? mrMuscleImage : (isLemonClassic ? lemonClassicImage : "/lemoncrassic_logo.png")}
           alt={event.name}
           className="w-full h-48 object-cover bg-black group-hover:scale-105 transition-transform duration-500"
         />
