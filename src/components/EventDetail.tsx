@@ -1,5 +1,6 @@
 import { ArrowLeft, Calendar, MapPin, Tag, Users, Clock, Award, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import { useEffect } from 'react';
+import mrMuscleImage from 'figma:asset/e93367d321ffb01b1219b125a34f1154f2c5b948.png';
 
 interface Event {
   id: number;
@@ -35,7 +36,10 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
   const isLemonTokyo = event.name === 'LEMON CLASSIC 2025 TOKYO';
   const isLemonHiroshima = event.name === 'LEMON CLASSIC 2025 HIROSHIMA';
   
-  // すべてのLEMON CLASSICで共通のカテゴリー
+  // Mr.筋肉（六大学ボディビルコンテスト）の判定
+  const isMrMuscle = event.name === 'Mr.筋肉（六大学ボディビルコンテスト）';
+  
+  // すべてのLEMON CLASSICで共通カテゴリー
   const standardCategories = [
     'ビキニ',
     'ノービスフィジーク',
@@ -45,7 +49,31 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
     'オープンボディビル'
   ];
   
-  const details = isLemonFukuoka ? {
+  // Mr.筋肉専用のカテゴリー
+  const mrMuscleCategories = [
+    'ノービスフィジーク',
+    'オープンフィジーク',
+    'オープンボディビル'
+  ];
+  
+  const details = isMrMuscle ? {
+    overview: '本大会「Mr.筋肉（六大学ボディビルコンテスト）」は、日本最大級のナイトクラブを舞台に、演出に特化した新感覚のボディビル・フィジークコンテストとして開催されます。\n対象は六大学（東京大学・早稲田大学・慶應義塾大学・明治大学・立教大学・法政大学）に所属する学生で、高学歴×筋肉という新しい学生カルチャーを発信します。\n従来の競技性重視のボディコンテストとは異なり、照明・音響・映像演出を融合させ、フィットネスをエンターテインメントとして楽しめる大会を目指します。',
+    date: event.date,
+    venue: 'T2 SHINJUKU\n（東京都新宿区西新宿7丁目1−1 新宿カレイドビル7F）',
+    price: '出場費：3,000円',
+    recruitmentPeriod: '2025年8月1日 20:00 〜 2025年11月1日 20:00',
+    recruitmentDetail: '',
+    requirements: [
+      '大学生・大学院生'
+    ],
+    prize: {
+      novicePhysique: 'ノービスフィジーク　優勝 5万円',
+      openPhysique: 'オープンフィジーク　優勝 10万円',
+      openBodybuilding: 'オープンボディビル　優勝 10万円',
+      bestPosing: 'ベストポージング賞　優勝 5万円',
+      note: '※各カテゴリーごとに上記賞金を授与'
+    }
+  } : isLemonFukuoka ? {
     overview: 'ボディビルの魅力を全国に伝えたい！出場される選手とお越しいただける観客の気持ちに寄り添った大会を目指します。 今年度は大阪、福岡、名古屋、沖縄、東京、では初心者でも出場しやすい大会 広島では上位入賞者へ賞金総額500万円を出す大会を開催します！',
     date: event.date,
     venue: event.location,
@@ -113,7 +141,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
 
   const faqs = [
     {
-      q: '初心者でも参加でき��すか？',
+      q: '初心者でも参加できますか？',
       a: 'はい、初心者の方も大歓迎です！ポージング指導もありますので、安心してご参加ください。'
     },
     {
@@ -144,9 +172,9 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
           <img 
-            src="lemoncrassic_logo.png"
+            src={isMrMuscle ? mrMuscleImage : "https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"}
             alt={event.name}
-            className="w-full h-full object-cover"
+            className={isMrMuscle ? "w-full h-80 object-cover" : "w-full h-64 object-contain p-8"}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -215,7 +243,11 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               カテゴリー
             </h3>
             <div className="space-y-2">
-              {standardCategories.map((category, index) => (
+              {isMrMuscle ? mrMuscleCategories.map((category, index) => (
+                <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
+                  <div className="text-sm">{category}</div>
+                </div>
+              )) : standardCategories.map((category, index) => (
                 <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
                   <div className="text-sm">{category}</div>
                 </div>
@@ -288,6 +320,46 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
                       <div className="text-base">ボディビルオープン</div>
                     </div>
                     <div className="ml-10 text-gray-700 text-sm">{details.prize.bodybuilding}</div>
+                  </div>
+                </>
+              ) : isMrMuscle ? (
+                <>
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">ノービスフィジーク</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.novicePhysique}</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">オープンフィジーク</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.openPhysique}</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 border-2 border-yellow-300 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">
+                        1
+                      </div>
+                      <div className="text-base">オープンボディビル</div>
+                    </div>
+                    <div className="ml-10 text-gray-700 text-sm">{details.prize.openBodybuilding}</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Sparkles className="w-4 h-4 text-blue-500" />
+                      <div className="text-sm">ベストポージング賞</div>
+                    </div>
+                    <div className="ml-6 text-gray-700 text-xs">{details.prize.bestPosing}</div>
                   </div>
                 </>
               ) : (
@@ -395,6 +467,8 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
                     ? "https://lemon-classic.com/2025/lemon-classic-2025-tokyo/"
                     : isLemonHiroshima
                     ? "https://lemon-classic.com/2025/lemon-classic-japan-2025-in-hiroshima/"
+                    : isMrMuscle
+                    ? "https://readyfor.jp/projects/mrmuscle"
                     : "https://lemon-classic.com/2025/"
                 } 
                 target="_blank" 

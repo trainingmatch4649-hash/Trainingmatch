@@ -304,13 +304,22 @@ export function EventDiagnosis({ onBack, onEventClick }: EventDiagnosisProps) {
         name: 'LEMON CLASSIC 2025 KYOTO',
         year: '',
         category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
-        date: '2025年7月27日',
-        monthsFromNow: 7,
+        date: '2025年10月11日',
         location: '京都府京都市・京都会館',
         price: '参加費: 6,000円',
-        badge: '経験者向け',
-        level: 'experienced',
-        types: ['advanced-competitive']
+        badge: '初心者向け',
+        region: '関西'
+      },
+      {
+        id: 10,
+        name: 'Mr.筋肉（六大学ボディビルコンテスト）',
+        year: '',
+        category: ['ノービスフィジーク', 'オープンフィジーク', 'オープンボディビル'],
+        date: '2025年11月23日',
+        location: 'T2 SHINJUKU',
+        price: '3,000円',
+        badge: '初心者向け',
+        region: '関東'
       }
     ];
 

@@ -15,30 +15,40 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
       name: 'LEMON CLASSIC 2025 FUKUOKA',
       year: '',
       category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
-      date: '2025年7月20日',
-      location: '福岡県福岡市・パピヨン24ガスホール',
-      price: '6,000円',
-      badge: '初心者向け'
+      date: '2025年8月3日',
+      location: '福岡国際会議場',
+      price: '8,000円',
+      badge: '初心者歓迎'
     },
     {
       id: 2,
       name: 'LEMON CLASSIC 2025 NAGOYA',
       year: '',
       category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
-      date: '2025年8月16日',
-      location: '愛知県名古屋市・名古屋市公会堂',
-      price: '参加費: 6,000円',
-      badge: '初心者向け'
+      date: '2025年7月20日',
+      location: '名古屋国際会議場',
+      price: '8,000円',
+      badge: '初心者歓迎'
     },
     {
       id: 3,
       name: 'LEMON CLASSIC 2025 OKINAWA',
       year: '',
       category: ['ビキニ', 'ノービスフィジーク', 'オープンフィジーク', 'クラシックフィジーク', 'ノービスボディビル', 'オープンボディビル'],
-      date: '2025年8月30日',
-      location: '沖縄県沖縄市・てだこホール',
-      price: '参加費: 6,000円',
-      badge: '初心者向け'
+      date: '2025年7月27日',
+      location: '沖縄コンベンションセンター',
+      price: '8,000円',
+      badge: '初心者歓迎'
+    },
+    {
+      id: 7,
+      name: 'Mr.筋肉（六大学ボディビルコンテスト）',
+      year: '',
+      category: ['ノービスフィジーク', 'オープンフィジーク', 'オープンボディビル'],
+      date: '2025年11月23日',
+      location: 'T2 SHINJUKU',
+      price: '3,000円',
+      badge: '初心者歓迎'
     }
   ];
 
@@ -118,7 +128,7 @@ export function LevelRecommendations({ onEventClick }: LevelRecommendationsProps
             <ul className="space-y-2 text-gray-700">
               <li>• ポージング指導やウォーキング練習が受けられる</li>
               <li>• 審査基準の説明があり、初めてでも安心</li>
-              <li>• 完走・完走を重視し、楽しむことが一緒一</li>
+              <li>• 完走・完走を重視し、楽しむことが大事</li>
               <li>• 経験豊富なスタッフがサポート</li>
             </ul>
           </div>

@@ -1,4 +1,5 @@
 import { Calendar, MapPin, Tag } from 'lucide-react';
+import mrMuscleImage from 'figma:asset/e93367d321ffb01b1219b125a34f1154f2c5b948.png';
 
 interface EventCardProps {
   event: {
@@ -21,12 +22,15 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
     }
   };
 
+  // Mr.筋肉（六大学ボディビルコンテスト）の判定
+  const isMrMuscle = event.name === 'Mr.筋肉（六大学ボディビルコンテスト）';
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
       {/* イベント画像 */}
       <div className="relative overflow-hidden">
         <img 
-          src="/lemoncrassic_logo.png"
+          src={isMrMuscle ? mrMuscleImage : "https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"}
           alt={event.name}
           className="w-full h-48 object-cover bg-black group-hover:scale-105 transition-transform duration-500"
         />

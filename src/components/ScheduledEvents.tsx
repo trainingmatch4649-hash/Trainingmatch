@@ -90,9 +90,19 @@ export function ScheduledEvents({ onBack, onEventClick, searchFilters }: Schedul
       date: '2025年9月15日',
       location: '広島県広島市・フェニックスホール',
       price: '参加費: 6,000円',
-      badge: '経験者向け',
-      region: '中国',
-      month: '9月'
+      badge: '経験者向け'
+    },
+    {
+      id: 7,
+      name: 'Mr.筋肉（六大学ボディビルコンテスト）',
+      year: '',
+      category: ['ノービスフィジーク', 'オープンフィジーク', 'オープンボディビル'],
+      date: '2025年11月23日',
+      location: 'T2 SHINJUKU',
+      price: '3,000円',
+      badge: '初心者歓迎',
+      region: '関東',
+      month: '11月'
     }
   ];
 
@@ -110,9 +120,9 @@ export function ScheduledEvents({ onBack, onEventClick, searchFilters }: Schedul
 
     // カテゴリーフィルター
     if (filters.category !== 'すべて') {
-      // 「ボディビルディング」選択時は「ノービスボディビル」と「オープンボディビル」の両方を含むものを検索
+      // 「ボディビルディング」選択時は「ノービスボディビル」または「オープンボディビル」のいずれかを含むものを検索
       if (filters.category === 'ボディビルディング') {
-        if (!event.category.includes('ノービスボディビル') || !event.category.includes('オープンボディビル')) {
+        if (!event.category.includes('ノービスボディビル') && !event.category.includes('オープンボディビル')) {
           return false;
         }
       } 
@@ -192,10 +202,11 @@ export function ScheduledEvents({ onBack, onEventClick, searchFilters }: Schedul
                 <option>すべて</option>
                 <option>メンズフィジーク</option>
                 <option>ビキニ</option>
-                <option>ボディビル</option>
-                <option>ベストボディ</option>
-                <option>クラシックフィジーク</option>
+                <option>ウェルネス</option>
+                <option>フィギュア</option>
                 <option>ウィメンズフィジーク</option>
+                <option>クラシックフィジーク</option>
+                <option>フィットモデル</option>
                 <option>ボディビルディング</option>
               </select>
               <ChevronDown className="absolute right-3 top-9 w-5 h-5 text-gray-400 pointer-events-none" />
@@ -229,9 +240,11 @@ export function ScheduledEvents({ onBack, onEventClick, searchFilters }: Schedul
                 className="w-full appearance-none px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option>すべて</option>
-                <option>7月</option>
                 <option>8月</option>
                 <option>9月</option>
+                <option>10月</option>
+                <option>11月</option>
+                <option>12月</option>
               </select>
               <ChevronDown className="absolute right-3 top-9 w-5 h-5 text-gray-400 pointer-events-none" />
             </div>
