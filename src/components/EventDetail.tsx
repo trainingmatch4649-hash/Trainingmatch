@@ -24,19 +24,25 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
   }, []);
 
   // LEMON CLASSIC 2025 FUKUOKA の特別な詳細情報
-  const isLemonFukuoka = event.name === 'LEMON CLASSIC' && event.year === '2025 FUKUOKA';
+  const isLemonFukuoka = event.name === 'LEMON CLASSIC 2025 FUKUOKA';
   
   // LEMON CLASSIC 2025 OSAKA の特別な詳細情報
   const isLemonOsaka = event.name === 'LEMON CLASSIC 2025 OSAKA';
   
-  // LEMON CLASSIC 2025 FUKUOKA のカテゴリー
-  const lemonFukuokaCategories = [
-    'ビキニ、ノービスフィジーク、オープンフィジーク、クラシックフィジーク、ノービスボディビル、オープンボディビル'
-  ];
+  // その他の大会判定
+  const isLemonNagoya = event.name === 'LEMON CLASSIC 2025 NAGOYA';
+  const isLemonOkinawa = event.name === 'LEMON CLASSIC 2025 OKINAWA';
+  const isLemonTokyo = event.name === 'LEMON CLASSIC 2025 TOKYO';
+  const isLemonHiroshima = event.name === 'LEMON CLASSIC 2025 HIROSHIMA';
   
-  // LEMON CLASSIC 2025 OSAKA のカテゴリー
-  const lemonOsakaCategories = [
-    'ビキニ、ノービスフィジーク、オープンフィジーク、クラシックフィジーク、ノービスボディビル、オープンボディビル'
+  // すべてのLEMON CLASSICで共通のカテゴリー
+  const standardCategories = [
+    'ビキニ',
+    'ノービスフィジーク',
+    'オープンフィジーク',
+    'クラシックフィジーク',
+    'ノービスボディビル',
+    'オープンボディビル'
   ];
   
   const details = isLemonFukuoka ? {
@@ -107,7 +113,7 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
 
   const faqs = [
     {
-      q: '初心者でも参加できますか？',
+      q: '初心者でも参加でき��すか？',
       a: 'はい、初心者の方も大歓迎です！ポージング指導もありますので、安心してご参加ください。'
     },
     {
@@ -138,9 +144,9 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
         {/* メイン画像 */}
         <div className="relative rounded-2xl overflow-hidden mb-8 shadow-2xl bg-white">
           <img 
-            src="/lemoncrassic_logo.png"
+            src="https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"
             alt={event.name}
-            className="w-full h-full object-cover"
+            className="w-full h-64 object-contain p-8"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -208,27 +214,13 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               <Users className="w-4 h-4 text-green-500" />
               カテゴリー
             </h3>
-            {isLemonFukuoka ? (
-              <div className="space-y-2">
-                {lemonFukuokaCategories.map((category, index) => (
-                  <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
-                    <div className="text-sm">{category}</div>
-                  </div>
-                ))}
-              </div>
-            ) : isLemonOsaka ? (
-              <div className="space-y-2">
-                {lemonOsakaCategories.map((category, index) => (
-                  <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
-                    <div className="text-sm">{category}</div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-                <div>{event.category}</div>
-              </div>
-            )}
+            <div className="space-y-2">
+              {standardCategories.map((category, index) => (
+                <div key={index} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-3 border border-green-200">
+                  <div className="text-sm">{category}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* 募集期間 */}
@@ -390,7 +382,21 @@ export function EventDetail({ event, onBack }: EventDetailProps) {
               
               {/* 右側：アクションボタン */}
               <a 
-                href="https://lemon-classic.com/2025/" 
+                href={
+                  isLemonFukuoka 
+                    ? "https://lemon-classic.com/2025/lemon-classic-2025-fukuoka/" 
+                    : isLemonOsaka 
+                    ? "https://lemon-classic.com/2025/lemon-classic-2025-osaka/" 
+                    : isLemonNagoya
+                    ? "https://lemon-classic.com/2025/lemon-classic-2025-nagoya/"
+                    : isLemonOkinawa
+                    ? "https://lemon-classic.com/2025/lemon-classic-okinawa/"
+                    : isLemonTokyo
+                    ? "https://lemon-classic.com/2025/lemon-classic-2025-tokyo/"
+                    : isLemonHiroshima
+                    ? "https://lemon-classic.com/2025/lemon-classic-japan-2025-in-hiroshima/"
+                    : "https://lemon-classic.com/2025/"
+                } 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="
