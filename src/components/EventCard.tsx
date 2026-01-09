@@ -26,7 +26,7 @@ export function EventCard({ event, onEventClick }: EventCardProps) {
       {/* イベント画像 */}
       <div className="relative overflow-hidden">
         <img 
-          src="https://simple-peach-giadjwtny4.edgeone.app/lemoncrassic_logo.png"
+          src="/lemoncrassic_logo.png"
           alt={event.name}
           className="w-full h-48 object-cover bg-black group-hover:scale-105 transition-transform duration-500"
         />
